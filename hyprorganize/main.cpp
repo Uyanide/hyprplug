@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 21:51:49
+ * @LastEditTime: 2025-08-04 21:55:18
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -79,7 +79,10 @@ static SDispatchResult organizeworkspaces(std::string in) {
 }
 
 APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
-    HyprlandAPI::addDispatcherV2(handle, "plugin:uyani:organize", ::organizeworkspaces);
+    auto success = HyprlandAPI::addDispatcherV2(handle, "plugin:uyani:organize", ::organizeworkspaces);
+    if (!success) {
+        throw std::runtime_error("hyprorganize failed to register dispatcher");
+    }
     return {"hyprorganize", "Organize workspaces from 1 to N, where N is the number of workspaces with at least one window", "Uyanide", "1.0"};
 }
 
