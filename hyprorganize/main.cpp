@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 21:58:15
+ * @LastEditTime: 2025-08-04 22:08:20
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -10,7 +10,6 @@
 
 #include <algorithm>
 #include <hyprland/src/includes.hpp>
-#include <sstream>
 #include <vector>
 
 #define private public
