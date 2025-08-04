@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 22:11:55
+ * @LastEditTime: 2025-08-04 22:14:05
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -24,7 +24,7 @@ APICALL EXPORT std::string PLUGIN_API_VERSION() {
 
 static SDispatchResult organizeworkspaces(std::string in) {
     std::vector<WORKSPACEID> _idsFrom;
-    for (const auto& _workspace : g_pCompositor->getWorkspaces()) {
+    for (const auto& _workspace : g_pCompositor->m_workspaces) {
         // case not normal workspace
         if (_workspace->m_isSpecialWorkspace || _workspace->m_id < 0) {
             continue;
