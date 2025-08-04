@@ -1,0 +1,10 @@
+[repository]
+name    = "hyprplug"
+authors = ["Uyanide"]
+
+[hyprorganize]
+description    = "Organize workspaces from 1 to N, where N is the number of workspaces with at least one window"
+authors        = ["Uyanide"]
+output         = "hyprorganize/hyprorganize.so"
+build          = ["make -C hyprorganize all"]
+since_hyprland = 5573
