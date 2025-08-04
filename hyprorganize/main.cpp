@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 21:42:14
+ * @LastEditTime: 2025-08-04 21:51:49
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -59,11 +59,15 @@ static SDispatchResult organizeworkspaces(std::string in) {
         const auto& _workspaceFrom = g_pCompositor->getWorkspaceByID(_idFrom);
         auto        _workspaceTo   = g_pCompositor->getWorkspaceByID(_idTo);
         if (!_workspaceTo) {
-            _workspaceTo = g_pCompositor->createNewWorkspace(_idTo, _workspaceFrom->m_monitor->m_id, _workspaceFrom->m_name, false);
+            if (!_workspaceFrom->m_monitor) {
+                return SDispatchResult{.success = false, .error = "Workspace has no monitor"};
+            }
+            std::string _name = std::to_string(_idTo);
+            _workspaceTo      = g_pCompositor->createNewWorkspace(_idTo, _workspaceFrom->m_monitor->m_id, _name, false);
             if (!_workspaceTo) {
                 return SDispatchResult{.success = false, .error = "Failed to create workspace"};
             }
-            // g_pCompositor->registerWorkspace(_workspaceTo);
+            g_pCompositor->registerWorkspace(_workspaceTo);
         }
         for (const auto _window : g_pCompositor->m_windows) {
             if (_window->m_workspace == _workspaceFrom) {
