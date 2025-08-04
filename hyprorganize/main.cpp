@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 21:36:42
+ * @LastEditTime: 2025-08-04 21:42:14
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -49,9 +49,7 @@ static SDispatchResult organizeworkspaces(std::string in) {
     if (_idsFrom.empty()) {
         return SDispatchResult{.success = false, .error = "No workspaces to organize"};
     }
-    std::sort(_idsFrom.begin(), _idsFrom.end(), [](const auto& a, const auto& b) {
-        return a < b;
-    });
+    std::sort(_idsFrom.begin(), _idsFrom.end(), [](const auto& a, const auto& b) { return a < b; });
     WORKSPACEID _idTo = 0;
     for (const auto& _idFrom : _idsFrom) {
         _idTo++;
@@ -59,13 +57,13 @@ static SDispatchResult organizeworkspaces(std::string in) {
             continue;
         }
         const auto& _workspaceFrom = g_pCompositor->getWorkspaceByID(_idFrom);
-        auto _workspaceTo          = g_pCompositor->getWorkspaceByID(_idTo);
+        auto        _workspaceTo   = g_pCompositor->getWorkspaceByID(_idTo);
         if (!_workspaceTo) {
             _workspaceTo = g_pCompositor->createNewWorkspace(_idTo, _workspaceFrom->m_monitor->m_id, _workspaceFrom->m_name, false);
             if (!_workspaceTo) {
                 return SDispatchResult{.success = false, .error = "Failed to create workspace"};
             }
-            g_pCompositor->registerWorkspace(_workspaceTo);
+            // g_pCompositor->registerWorkspace(_workspaceTo);
         }
         for (const auto _window : g_pCompositor->m_windows) {
             if (_window->m_workspace == _workspaceFrom) {

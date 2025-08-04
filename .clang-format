@@ -1,64 +1,65 @@
-BasedOnStyle: Google
+---
+Language: Cpp
+BasedOnStyle: LLVM
 
 AccessModifierOffset: -2
-
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: true
 AlignConsecutiveAssignments: true
-
-AllowAllArgumentsOnNextLine: false
-
-AllowAllParametersOfDeclarationOnNextLine: false
-
-AllowShortBlocksOnASingleLine: Empty
-
+AlignEscapedNewlines: Right
+AlignOperands: false
+AlignTrailingComments: true
+AllowAllArgumentsOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
-
-AllowShortFunctionsOnASingleLine: Inline
-
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: All
-
-BreakAfterReturnType: Automatic
-
-BinPackArguments: false
-
-BinPackParameters: false
-
-ColumnLimit: 0
-
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: false
+BreakConstructorInitializers: AfterColon
+ColumnLimit: 180
 CompactNamespaces: false
-
-ContinuationIndentWidth: 4
-
-Cpp11BracedListStyle: true
-
-EmptyLineBeforeAccessModifier: LogicalBlock
-
-FixNamespaceComments: true
-
-IncludeBlocks: Regroup
-SortIncludes: true
-IncludeCategories:
-    - Regex: '^<ext/.*\.h>'
-      Priority: 2
-    - Regex: '^<.*\.h>'
-      Priority: 1
-    - Regex: '^<.*'
-      Priority: 2
-    - Regex: '.*'
-      Priority: 3
-
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ExperimentalAutoDetectBinPacking: false
+FixNamespaceComments: false
+IncludeBlocks: Preserve
+IndentCaseLabels: true
 IndentWidth: 4
-
-KeepEmptyLines:
-    AtEndOfFile: true
-    AtStartOfBlock: true
-    AtStartOfFile: false
-
-MaxEmptyLinesToKeep: 1
-
+PointerAlignment: Left
+ReflowComments: false
+SortIncludes: false
+SortUsingDeclarations: false
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+Standard: Auto
 TabWidth: 4
-
 UseTab: Never
 
-SeparateDefinitionBlocks: Always
+AllowShortEnumsOnASingleLine: false
 
-QualifierAlignment: Left
+BraceWrapping:
+  AfterEnum: false
+
+AlignConsecutiveDeclarations: AcrossEmptyLines
+
+NamespaceIndentation: All
