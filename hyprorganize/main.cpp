@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 22:14:05
+ * @LastEditTime: 2025-08-04 22:18:51
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -39,7 +39,8 @@ static SDispatchResult organizeworkspaces(std::string in) {
         return SDispatchResult{.success = false, .error = "No workspaces to organize"};
     }
     std::sort(_idsFrom.begin(), _idsFrom.end(), [](const auto& a, const auto& b) { return a < b; });
-    WORKSPACEID _idTo = 0;
+    WORKSPACEID      _idTo       = 0;
+    const PHLWINDOW* _lastWindow = nullptr;
     for (const auto& _idFrom : _idsFrom) {
         _idTo++;
         if (_idFrom == _idTo) {
@@ -58,11 +59,15 @@ static SDispatchResult organizeworkspaces(std::string in) {
             }
             // g_pCompositor->registerWorkspace(_workspaceTo);
         }
-        for (const auto _window : g_pCompositor->m_windows) {
+        for (const auto& _window : g_pCompositor->m_windows) {
             if (_window->m_workspace == _workspaceFrom) {
                 g_pCompositor->moveWindowToWorkspaceSafe(_window, _workspaceTo);
+                _lastWindow = &_window;
             }
         }
+    }
+    if (_lastWindow) {
+        g_pCompositor->focusWindow(*_lastWindow);
     }
     return SDispatchResult{.success = true, .error = ""};
 }
