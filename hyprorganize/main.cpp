@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 21:55:18
+ * @LastEditTime: 2025-08-04 21:58:15
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -67,7 +67,7 @@ static SDispatchResult organizeworkspaces(std::string in) {
             if (!_workspaceTo) {
                 return SDispatchResult{.success = false, .error = "Failed to create workspace"};
             }
-            g_pCompositor->registerWorkspace(_workspaceTo);
+            // g_pCompositor->registerWorkspace(_workspaceTo);
         }
         for (const auto _window : g_pCompositor->m_windows) {
             if (_window->m_workspace == _workspaceFrom) {
