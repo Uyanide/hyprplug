@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-08-04 22:18:51
+ * @LastEditTime: 2025-09-11 21:16:04
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -12,7 +12,9 @@
 #include <vector>
 #include <hyprland/src/includes.hpp>
 #include <hyprland/src/helpers/Monitor.hpp>
+#define private public
 #include <hyprland/src/Compositor.hpp>
+#undef private
 #include <hyprland/src/plugins/PluginAPI.hpp>
 
 inline HANDLE PHANDLE = nullptr;
@@ -36,7 +38,7 @@ static SDispatchResult organizeworkspaces(std::string in) {
         _idsFrom.push_back(_workspace->m_id);
     }
     if (_idsFrom.empty()) {
-        return SDispatchResult{.success = false, .error = "No workspaces to organize"};
+        return SDispatchResult{.success = true, .error = ""};
     }
     std::sort(_idsFrom.begin(), _idsFrom.end(), [](const auto& a, const auto& b) { return a < b; });
     WORKSPACEID      _idTo       = 0;
