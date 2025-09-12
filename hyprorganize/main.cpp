@@ -1,7 +1,7 @@
 /*
  * @Author: Uyanide pywang0608@foxmail.com
  * @Date: 2025-08-04 20:26:06
- * @LastEditTime: 2025-09-11 21:16:04
+ * @LastEditTime: 2025-09-12 14:25:43
  * @Description: Hyprland plugin to organize workspaces
  */
 #define WLR_USE_UNSTABLE
@@ -12,9 +12,7 @@
 #include <vector>
 #include <hyprland/src/includes.hpp>
 #include <hyprland/src/helpers/Monitor.hpp>
-#define private public
 #include <hyprland/src/Compositor.hpp>
-#undef private
 #include <hyprland/src/plugins/PluginAPI.hpp>
 
 inline HANDLE PHANDLE = nullptr;
@@ -26,7 +24,7 @@ APICALL EXPORT std::string PLUGIN_API_VERSION() {
 
 static SDispatchResult organizeworkspaces(std::string in) {
     std::vector<WORKSPACEID> _idsFrom;
-    for (const auto& _workspace : g_pCompositor->m_workspaces) {
+    for (const auto& _workspace : g_pCompositor->getWorkspacesCopy()) {
         // case not normal workspace
         if (_workspace->m_isSpecialWorkspace || _workspace->m_id < 0) {
             continue;
